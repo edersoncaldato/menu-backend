@@ -7,8 +7,7 @@ import { SpotService } from "./spot.service";
 @Module({
     imports: [TypeOrmModule.forFeature([Spot])],
     controllers: [SpotController],
-    providers: [SpotService]
+    providers: [SpotService],
+    exports: [SpotService]
 })
-export class spotModule {
-
-}
+export class SpotModule {}
