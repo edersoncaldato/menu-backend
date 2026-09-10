@@ -1,7 +1,7 @@
-import { GuestCheck } from "src/cases/guest-checks/guest-check.entity";
 import { Column, CreateDateColumn, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Entity } from "typeorm/browser/decorator/entity/Entity.js";
-import { OrderItem } from "./order-item.intity";
+import { OrderItem } from "./order-item.entity";
+import { GuestCheck } from "../../guest-checks/guest-check.entity";
 
 export enum OrderStatus {
     NEW = 'NEW',

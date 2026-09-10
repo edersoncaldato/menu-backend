@@ -1,7 +1,7 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { CreateOrderDto, CreateOrderItemDto } from "./dto/create-order";
 import { Order, OrderStatus } from "./entities/order-entity";
-import { OrderItem } from "./entities/order-item.intity";
+import { OrderItem } from "./entities/order-item.entity";
 import { GuestCheckService } from "../guest-checks/guest-check.service";
 import { Repository } from "typeorm/browser/repository/Repository.js";
 import { InjectRepository } from "@nestjs/typeorm/dist/common/typeorm.decorators";
