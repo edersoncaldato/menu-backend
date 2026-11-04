@@ -2,27 +2,26 @@ import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGenerat
 import { Spot } from "../spots/spot.entity";
 
 export enum GuestCheckStatus {
-    OPENED = 'OPENED',
-    CLOSED = 'CLOSED'
+  OPENED = 'OPENED',
+  CLOSED = 'CLOSED'
 }
 
-@Entity('guest-check')
+@Entity('guest-check') 
 export class GuestCheck {
-    @PrimaryGeneratedColumn('uuid')
-    id: string;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-    @CreateDateColumn   ({name: 'created_at'})
-    createdAt: Date;
+  @CreateDateColumn({name: 'created_at'})
+  createdAt: Date;
 
-    @Column({
-        type: 'enum',
-        enum: GuestCheckStatus,
-        default: GuestCheckStatus.OPENED
-    })
+  @Column({
+    type: 'enum',
+    enum: GuestCheckStatus,
+    default: GuestCheckStatus.OPENED
+  })
+  status: GuestCheckStatus;
 
-    status: GuestCheckStatus;
-
-    @ManyToOne(() => Spot, { nullable: false })
-    @JoinColumn({ name: 'spot_id' })
-    spot: Spot;
+  @ManyToOne(() => Spot, {nullable: false})
+  @JoinColumn({ name: 'spot_id'})
+  spot: Spot;
 }

@@ -1,6 +1,6 @@
-import { IsNotEmpty, IsUUID } from "class-validator";
+import { IsUUID } from "class-validator";
 
 export class CreateGuestCheckDto {
-    @IsUUID()
-    spotId: string;
+  @IsUUID()
+  spotId: string;
 }

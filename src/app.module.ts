@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { CategoryModule } from './cases/categories/category.module';
 import { ProductModule } from './cases/products/product.module';
-import { CategoryyModule } from './cases/categories/category.module';
 import { SpotModule } from './cases/spots/spot.module';
 import { GuestCheckModule } from './cases/guest-checks/guest-check.module';
+import { OrderModule } from './cases/orders/order.module';
 
 @Module({
   imports: [
@@ -12,30 +13,28 @@ import { GuestCheckModule } from './cases/guest-checks/guest-check.module';
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
-        const databaseUrl = configService.get<string>('DATABASE_URL');
-        const databaseSchema = configService.get<string>('DATABASE_SCHEMA', 'public');
-        
-        if(!databaseUrl) {
-          throw new Error('A variavel de ambiente DATABASE_URL não foi encontrada');
+        const databaseURL = configService.get<string>('DATABASE_URL');
+        const dbSchema = configService.get<string>('DATABASE_SCHEMA', 'public');
+
+        if (!databaseURL) {
+          throw new Error('A variável de ambiente DATABASE_URL não foi encontrada!');
         }
 
         return {
           type: 'postgres',
-          url: databaseUrl,
-          schema: databaseSchema,
-          autoloadEntities: true,
+          url: databaseURL,
+          schema: dbSchema,
+          autoLoadEntities: true,
           synchronize: true,
-          ssl:false
-          
+          ssl: false
         }
       }
     }),
-    CategoryyModule,
+    CategoryModule,
     ProductModule,
     SpotModule,
-    GuestCheckModule
+    GuestCheckModule,
+    OrderModule
   ],
-  controllers: [],
-  providers: [],
 })
 export class AppModule {}
